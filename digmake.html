@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <title>NiceBoisNice</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body {
+            overflow: hidden;
+            background: black;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #canvas {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            display: block; /* Remove any padding or margins */
+            width: 80%;
+            height: 90%;
+        }
+        #fullscreenImage {
+            position: fixed;     /* stays locked to screen */
+            top: 0;
+            left: 0;
+            width: 100vw;        /* full viewport width */
+            height: 100vh;       /* full viewport height */
+            object-fit: cover;   /* fills screen without distortion */
+            z-index: 10;         /* above canvas */
+            pointer-events: none; /* optional: lets canvas clicks pass through */
+        }
+        #rightText {
+            font-family: 'Press Start 2P', monospace;
+
+            position: fixed;
+            top: 48%;
+            right: 7vw;              /* distance from right edge scales */
+            transform: translateY(-50%);
+            
+            width: 30vw;             /* width scales with screen */
+            max-width: 500px;        /* prevents it getting too large */
+            
+            color: black;
+            z-index: 20;             /* above image */
+            
+            text-align: right;
+        }
+
+        /* Responsive font scaling */
+        #rightText h1 {
+            font-size: clamp(20px, 2.3vw, 64px);
+            margin: 0;
+        }
+
+        #rightText p {
+            font-size: clamp(14px, 1.5vw, 24px);
+        }
+    </style>
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<body>
+    <canvas id="canvas" style="display:block; margin: 0 auto;"></canvas>
+    <img src="{{ url_for('static', filename='imgs/house_imgs/tv-room-closeup.png') }}" id="fullscreenImage">
+    <div id="rightText">
+    <h1>DigMake!</h1>
+
+        <br>
+        <br>
+        <br>
+        <p>
+            WASD to move<br>
+            1-9 for blocks!<br>
+            Click to place<br>
+            Right click to destroy<br>
+        </p>
+
+        <br>
+
+        <p>
+            Double-space<br>
+            to fly<br>
+            Ctrl to sprint<br>
+        </p>
+    </div>
+    <script>
+        window.CHUNK_EDITS = {{ chunk_edits | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='scripts/digmake.js') }}"></script>
+</body>
+</html>
