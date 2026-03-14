@@ -7,7 +7,6 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="pragma" content="no-cache">
     <title>NiceBoisNice</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <style>
         body {
             overflow: hidden;
@@ -66,7 +65,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <body>
     <canvas id="canvas" style="display:block; margin: 0 auto;"></canvas>
-    <img src="{{ url_for('static', filename='imgs/house_imgs/tv-room-closeup.png') }}" id="fullscreenImage">
+    <img src="{{ url_for('static', filename='tv-room-closeup.png') }}" id="fullscreenImage">
     <div id="rightText">
     <h1>DigMake!</h1>
 
@@ -88,9 +87,6 @@
             Ctrl to sprint<br>
         </p>
     </div>
-    <script>
-        window.CHUNK_EDITS = {{ chunk_edits | tojson }};
-    </script>
-    <script src="{{ url_for('static', filename='scripts/digmake.js') }}"></script>
+    <script src="{{ url_for('static', filename='digmake.js') }}"></script>
 </body>
 </html>
